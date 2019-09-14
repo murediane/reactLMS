@@ -10,7 +10,7 @@ import {
   LOGIN_FAIL
 } from "../types/auth.type";
 
-const { API_LOCAL } = process.env;
+const { API } = process.env;
 
 const signupStart = () => ({ type: SIGN_UP_START });
 const signupFail = error => ({ type: SIGN_UP_FAIL, payload: { error } });
@@ -18,7 +18,7 @@ const signupSuccess = token => ({ type: SIGN_UP_SUCCESS, payload: { token } });
 export const signup = newUser => async dispatch => {
   try {
     dispatch(signupStart());
-    const { data } = await axios.post(`${API_LOCAL}/auth/signup`, { ...newUser });
+    const { data } = await axios.post(`${API}/auth/signup`, { ...newUser });
     sessionStorage.setItem('token', data.data);
     toast.success('Signup success!');
     dispatch(signupSuccess(data.data));
@@ -34,7 +34,7 @@ const loginSuccess = token => ({ type: LOGIN_SUCCESS, payload: { token } });
 export const login = credentials => async dispatch => {
   try {
     dispatch(loginStart());
-    const { data } = await axios.post(`${API_LOCAL}/auth/login`, { ...credentials });
+    const { data } = await axios.post(`${API}/auth/login`, { ...credentials });
     sessionStorage.setItem('token', data.data.token);
     toast.success('Signin success!');
     dispatch(loginSuccess(data.data.token));

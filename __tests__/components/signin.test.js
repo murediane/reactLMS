@@ -3,12 +3,12 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 import {
-  Login,
+  Signin,
   mapDispatchToProps,
   mapStateToProps,
-} from '../../src/components/Login';
+} from '../../src/components/Signin';
 
-const renderLogin = (args) => {
+const renderSignin = (args) => {
   const defaultProps = {
     onLogin: jest.fn(),
     history: {
@@ -18,43 +18,30 @@ const renderLogin = (args) => {
   };
   const props = { ...defaultProps, ...args };
 
-  return mount(<MemoryRouter><Login {...props} /></MemoryRouter>);
+  return mount(<MemoryRouter><Signin {...props} /></MemoryRouter>);
 };
 
-describe('Login Page', () => {
-  test('Renders signup page', () => {
-    const wrapper = renderLogin({
-      authReducer: {
-        isAuthenticated: true,
-        currentUser: {
-          email: 'email'
-        }
-      },
-      location: {
-        search: '?/auth=false'
-      }
-    });
+describe('Signin Page', () => {
+  test('Renders Signin page', () => {
+    const wrapper = renderSignin({});
 
     wrapper
-      .find('#login-email')
+      .find('#loginEmail')
       .simulate('change', { target: { value: 'a' } });
     wrapper
-      .find('#login-password')
+      .find('#loginPassword')
       .simulate('change', { target: { value: 'a' } });
     wrapper
       .find('form')
       .simulate('submit');
 
-    expect(wrapper.find('.wrapper').length).toBe(1);
-    expect(wrapper.find('.left').length).toBe(1);
-    expect(wrapper.find('.right').length).toBe(1);
     expect(wrapper.find('form').length).toBe(1);
   });
 
   test('should map dispatch and state to props', () => {
     const dispatch = jest.fn();
     mapDispatchToProps(dispatch).onLogin();
-    mapStateToProps({ authReducer: { isAuthenticated: false } });
+    mapStateToProps({ authReducer: {} });
     expect(mapDispatchToProps).toBe(mapDispatchToProps);
   });
 });

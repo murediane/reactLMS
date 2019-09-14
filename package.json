@@ -11,7 +11,7 @@
     "test": "jest --coverage -u",
     "test:watch": "jest --watch --coverage",
     "clean": "rimraf ./build && mkdir build",
-    "prebuild": "yarn clean",
+    "prebuild": "npm run clean",
     "build": "webpack --config webpack.config.prod.js"
   },
   "devDependencies": {

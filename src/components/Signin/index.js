@@ -9,7 +9,7 @@ import emailImg from '../../assets/icons/email.png';
 import Header from '../Header';
 import { login } from '../../store/actions/auth.actions';
 
-class Signin extends Component {
+export class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,13 +49,13 @@ class Signin extends Component {
               <div className="input-group-addon">
                 <img src={emailImg} alt="" />
               </div>
-              <input name="email" className="modal-form-control" placeholder="Email" onChange={e => this.handleInputChange(e)} />
+              <input name="email" id="loginEmail" className="modal-form-control" placeholder="Email" onChange={e => this.handleInputChange(e)} />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src={lockImg} alt="Lock" />
               </div>
-              <input name="password" className="modal-form-control" placeholder="Password" type="password" onChange={e => this.handleInputChange(e)} />
+              <input name="password" id="loginPassword" className="modal-form-control" placeholder="Password" type="password" onChange={e => this.handleInputChange(e)} />
             </div>
             <div className="submit-wrap">
               <button type="submit" className="submit-btn" href="../user/index.html">
@@ -74,8 +74,8 @@ class Signin extends Component {
   }
 }
 
-const mapStateToProps = ({ authReducer }) => ({ authReducer });
-const mapDispatchToProps = dispatch => ({
+export const mapStateToProps = ({ authReducer }) => ({ authReducer });
+export const mapDispatchToProps = dispatch => ({
   onLogin: (user) => dispatch(login(user)),
 });
 

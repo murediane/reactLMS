@@ -11,9 +11,6 @@ import {
 const renderSignup = (args) => {
   const defaultProps = {
     onSignup: jest.fn(),
-    history: {
-      push: jest.fn()
-    },
     authReducer: {}
   };
   const props = { ...defaultProps, ...args };
@@ -35,34 +32,31 @@ describe('Signup Page', () => {
       }
     });
     wrapper
-      .find('#fN')
+      .find('#firstName')
       .simulate('change', { target: { value: 'a' } });
     wrapper
-      .find('#lN')
+      .find('#lastName')
       .simulate('change', { target: { value: 'a' } });
     wrapper
-      .find('#email-input')
+      .find('#email')
       .simulate('change', { target: { value: 'a' } });
     wrapper
       .find('#password')
       .simulate('change', { target: { value: 'a' } });
     wrapper
-      .find('#confirm-password')
+      .find('#confirmPassword')
       .simulate('change', { target: { value: 'a' } });
     wrapper
       .find('form')
       .simulate('submit');
 
-    expect(wrapper.find('.wrapper').length).toBe(1);
-    expect(wrapper.find('.left').length).toBe(1);
-    expect(wrapper.find('.right').length).toBe(1);
     expect(wrapper.find('form').length).toBe(1);
   });
 
   test('should map dispatch and state to props', () => {
     const dispatch = jest.fn();
     mapDispatchToProps(dispatch).onSignup();
-    mapStateToProps({ authReducer: { isAuthenticated: false } });
+    mapStateToProps({ });
     expect(mapDispatchToProps).toBe(mapDispatchToProps);
   });
 });

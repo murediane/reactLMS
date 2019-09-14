@@ -35,7 +35,7 @@ describe('Auth Actions', () => {
   test('should have SIGN_UP_START and SIGN_UP_SUCCESS', async (done) => {
     moxios.stubRequest(`${API_URL}/auth/signup`, {
       status: 201,
-      response: { data: [{ token: testToken }] }
+      response: { data: testToken }
     });
 
     const expectedActions = [
@@ -71,9 +71,9 @@ describe('Auth Actions', () => {
   });
 
   test('should have LOGIN_START and LOGIN_SUCCESS', async (done) => {
-    moxios.stubRequest(`${API_URL}/auth/signin`, {
+    moxios.stubRequest(`${API_URL}/auth/login`, {
       status: 200,
-      response: { data: [{ token: testToken }] }
+      response: { data: { token: testToken } }
     });
 
     const expectedActions = [
@@ -90,7 +90,7 @@ describe('Auth Actions', () => {
   });
 
   test('should have LOGIN_START and LOGIN_FAIL', async (done) => {
-    moxios.stubRequest(`${API_URL}/auth/signin`, {
+    moxios.stubRequest(`${API_URL}/auth/login`, {
       status: 400,
       response: { error: new Error('Request failed with status code 400') }
     });

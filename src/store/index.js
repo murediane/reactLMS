@@ -10,11 +10,6 @@ const { NODE_ENV } = process.env;
 const middleware = [thunk];
 const initialState = {};
 
-export const findByTestAtrr = (component, attr) => {
-  const wrapper = component.find(`[data-test='${attr}']`);
-  return wrapper;
-};
-
 const enableDevTools =
   NODE_ENV === 'development'
     ? composeWithDevTools(applyMiddleware(...middleware))
