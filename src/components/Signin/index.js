@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import '../../assets/styles/components/auth.css';
 import '../../assets/styles/components/index.css';
@@ -6,12 +7,34 @@ import confirmImg from '../../assets/icons/confirm.png';
 import lockImg from '../../assets/icons/lock.png';
 import emailImg from '../../assets/icons/email.png';
 import Header from '../Header';
+import { login } from '../../store/actions/auth.actions';
 
 class Signin extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      newLogin: {
+        email: '',
+        password: ''
+      }
+    };
   }
+
+  handleInputChange = e => {
+    const { name, value } = e.target;
+    this.setState(state => {
+      const { newLogin } = state;
+      const updated = { ...newLogin, [name]: value };
+      return { ...state, newLogin: updated };
+    });
+  };
+
+  handleSignin = e => {
+    e.preventDefault();
+    const { onLogin } = this.props;
+    const { newLogin } = this.state;
+    onLogin(newLogin);
+  };
 
   render() {
     return (
@@ -21,18 +44,18 @@ class Signin extends Component {
         <section className="modal" id="new-order">
           <p className="modal-header">Welcome back to our platform! SignIn</p>
           <p className="modal-header" />
-          <form className="modal-body">
+          <form onSubmit={this.handleSignin} className="modal-body">
             <div className="input-group">
               <div className="input-group-addon">
                 <img src={emailImg} alt="" />
               </div>
-              <input name="email" className="modal-form-control" placeholder="Email" />
+              <input name="email" className="modal-form-control" placeholder="Email" onChange={e => this.handleInputChange(e)} />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src={lockImg} alt="Lock" />
               </div>
-              <input name="password" className="modal-form-control" placeholder="Password" />
+              <input name="password" className="modal-form-control" placeholder="Password" type="password" onChange={e => this.handleInputChange(e)} />
             </div>
             <div className="submit-wrap">
               <button type="submit" className="submit-btn" href="../user/index.html">
@@ -51,4 +74,9 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+const mapStateToProps = ({ authReducer }) => ({ authReducer });
+const mapDispatchToProps = dispatch => ({
+  onLogin: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
