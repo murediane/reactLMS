@@ -44,6 +44,11 @@ export class Signup extends Component {
   };
 
   render() {
+    const { authReducer: { isAuthenticated }, history } = this.props;
+    if (isAuthenticated) {
+      history.push('/inbox');
+      toast.success('Signup success!');
+    }
     return (
       <>
         <Header />

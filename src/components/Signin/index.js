@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 import '../../assets/styles/components/auth.css';
@@ -37,6 +38,11 @@ export class Signin extends Component {
   };
 
   render() {
+    const { authReducer: { isAuthenticated }, history } = this.props;
+    if (isAuthenticated) {
+      history.push('/inbox');
+      toast.success('Signin success!');
+    }
     return (
       <>
         <Header />

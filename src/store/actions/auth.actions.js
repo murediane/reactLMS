@@ -20,7 +20,6 @@ export const signup = newUser => async dispatch => {
     dispatch(signupStart());
     const { data } = await axios.post(`${API}/auth/signup`, { ...newUser });
     sessionStorage.setItem('token', data.data);
-    toast.success('Signup success!');
     dispatch(signupSuccess(data.data));
   } catch (error) {
     toast.error('Signup failed');
@@ -36,7 +35,6 @@ export const login = credentials => async dispatch => {
     dispatch(loginStart());
     const { data } = await axios.post(`${API}/auth/login`, { ...credentials });
     sessionStorage.setItem('token', data.data.token);
-    toast.success('Signin success!');
     dispatch(loginSuccess(data.data.token));
   } catch (error) {
     toast.error('Signin failed!');

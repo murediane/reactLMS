@@ -27,7 +27,7 @@ class Inbox extends Component {
         </tr>
       ));
     } else {
-      inboxMsgs = (<tr>Loading</tr>);
+      inboxMsgs = (<tr>No messages yet</tr>);
     }
     return (
       <div className="Inbox__container">
