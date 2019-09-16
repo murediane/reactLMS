@@ -63,10 +63,6 @@ export class Signin extends Component {
                 <p>login</p>
               </button>
             </div>
-
-            <span>
-              <a className="local" href="resetpassword.html"> reset password </a>
-            </span>
           </form>
         </section>
       </>

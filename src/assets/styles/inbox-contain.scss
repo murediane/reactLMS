@@ -1,0 +1,10 @@
+.Inbox__container {
+  @import "./components/new-order.css";
+  @import "./components/common.css";
+  @import "./components/index.css";
+  @import "./components/auth.css";
+
+  .lg-card {
+    background: #fff;
+  }
+}

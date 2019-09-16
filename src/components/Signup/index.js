@@ -93,11 +93,6 @@ export class Signup extends Component {
                 <p>submit</p>
               </button>
             </div>
-
-            <span>
-              {' '}
-              <a className="local" href="resetpassword.html"> reset password </a>
-            </span>
           </form>
         </section>
       </>

@@ -5,9 +5,9 @@ import { ToastContainer } from 'react-toastify';
 import Home from "./Home";
 import Signup from "./Signup";
 import Signin from "./Signin";
+import Inbox from "./Inbox";
 
 import "react-toastify/dist/ReactToastify.css";
-import "../assets/styles/main.scss";
 
 const App = () => (
   <BrowserRouter>
@@ -16,6 +16,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Signin} />
+      <Route exact path="/inbox" component={Inbox} />
     </Switch>
   </BrowserRouter>
 );
