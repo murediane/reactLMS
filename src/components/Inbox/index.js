@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import '../../assets/styles/inbox-contain.scss';
@@ -32,17 +33,17 @@ class Inbox extends Component {
     return (
       <div className="Inbox__container">
         <header>
-          <a className="header-brand" href="index.html"> EPIC mail</a>
+          <Link className="header-brand" to="/"> EPIC mail</Link>
         </header>
 
         <section id="profile-box">
           <div>
             <li>
-              <a href="index.html">
+              <Link to="/inbox">
                 <div className="side-option highlighted">
                   <h1> inbox</h1>
                 </div>
-              </a>
+              </Link>
             </li>
           </div>
         </section>
