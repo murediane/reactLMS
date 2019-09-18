@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import '../../assets/styles/components/auth.css';
-import '../../assets/styles/components/index.css';
-import { toast } from 'react-toastify';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import "../../assets/styles/components/auth.css";
+import "../../assets/styles/components/index.css";
+import { toast } from "react-toastify";
 
-import confirmImg from '../../assets/icons/confirm.png';
-import Header from '../Header';
-import { signup } from '../../store/actions/auth.actions';
+import confirmImg from "../../assets/icons/confirm.png";
+import Header from "../Header";
+import { signup } from "../../store/actions/auth.actions";
 
 export class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newSignup: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-        confirmPassword: ''
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: ""
       }
     };
   }
@@ -44,10 +44,13 @@ export class Signup extends Component {
   };
 
   render() {
-    const { authReducer: { isAuthenticated }, history } = this.props;
+    const {
+      authReducer: { isAuthenticated },
+      history
+    } = this.props;
     if (isAuthenticated) {
-      history.push('/inbox');
-      toast.success('Signup success!');
+      history.push("/");
+      toast.success("Signup success!");
     }
     return (
       <>
@@ -60,37 +63,75 @@ export class Signup extends Component {
               <div className="input-group-addon">
                 <img src="../../assets/icons/employee.png" alt="" />
               </div>
-              <input id="firstName" name="firstName" className="modal-form-control" placeholder="First name" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="firstName"
+                name="firstName"
+                className="modal-form-control"
+                placeholder="First name"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src="../../assets/icons/employee.png" alt="" />
               </div>
-              <input id="lastName" name="lastName" className="modal-form-control" placeholder="last name" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="lastName"
+                name="lastName"
+                className="modal-form-control"
+                placeholder="last name"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src="../../assets/icons/email.png" alt="" />
               </div>
-              <input id="email" name="email" className="modal-form-control" placeholder="Email" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="email"
+                name="email"
+                className="modal-form-control"
+                placeholder="Email"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src="../../assets/icons/call.png" alt="" />
               </div>
-              <input id="phoneNumber" name="phoneNumber" className="modal-form-control" placeholder="Phone number" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="phoneNumber"
+                name="phoneNumber"
+                className="modal-form-control"
+                placeholder="Phone number"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src="../../assets/icons/lock.png" alt="" />
               </div>
-              <input id="password" name="password" className="modal-form-control" type="password" placeholder="Password" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="password"
+                name="password"
+                className="modal-form-control"
+                type="password"
+                placeholder="Password"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="input-group">
               <div className="input-group-addon">
                 <img src="../../assets/icons/lock.png" alt="" />
               </div>
-              <input id="confirmPassword" name="confirmPassword" className="modal-form-control" type="password" placeholder="Confirm password" onChange={e => this.handleInputChange(e)} />
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                className="modal-form-control"
+                type="password"
+                placeholder="Confirm password"
+                onChange={e => this.handleInputChange(e)}
+              />
             </div>
             <div className="submit-wrap">
               <button type="submit" className="submit-btn" href="../user/index.html">
@@ -107,7 +148,10 @@ export class Signup extends Component {
 
 export const mapStateToProps = ({ authReducer }) => ({ authReducer });
 export const mapDispatchToProps = dispatch => ({
-  onSignup: (user) => dispatch(signup(user)),
+  onSignup: user => dispatch(signup(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);
